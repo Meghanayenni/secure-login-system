@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard | Secure Login System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="background">
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+  <div class="circle circle3"></div>
+</div>
+
+<div class="dashboard">
+  <div class="icon">✅</div>
+  <h1>Welcome, {{ session["name"] }}</h1>
+  <p>You are logged in through a secure session.</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="security-box">
+    <h2>Security Features</h2>
+    <ul>
+      <li>Password hashing using bcrypt</li>
+      <li>Input validation for email and password</li>
+      <li>SQL injection protection using parameterized queries</li>
+      <li>Session management after login</li>
+      <li>Logout clears the active session</li>
+      <li>Demo two-factor authentication using OTP</li>
+    </ul>
+  </div>
+
+  <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+</div>
+
+</body>
+</html>
